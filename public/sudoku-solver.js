@@ -1,16 +1,18 @@
 const textArea = document.getElementById("text-input");
+const sudokuInput = document.getElementsByClassName("sudoku-input");
+const solveButton = document.getElementById('solve-button');
+const clearButton = document.getElementById('clear-button');
 // import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const fillGrid = values => {
-  const gridInput = document.getElementsByClassName("sudoku-input");
   let valuesArray = values.split(""); // values is a String
   console.log("valuesArray: "); /////////////////////
   console.log(valuesArray); /////////////////////
-  for (let i = 0; i < gridInput.length; i++) {
+  
+  for (let i = 0; i < sudokuInput.length; i++) {
     if(valuesArray[i].match(/\d|\./)){ 
-      gridInput[i].value = valuesArray[i].match(/\d/)? valuesArray[i] : ""
+      sudokuInput[i].value = valuesArray[i].match(/\d/)? valuesArray[i] : "";
     } else { 
-      i--;
       continue;
     }
   }
@@ -27,6 +29,8 @@ document.addEventListener("DOMContentLoaded", event => {
   
   // listen for changes in the textArea
   textArea.addEventListener('input', (e) => fillGrid(e.target.value));
+  // listen for inputs in sudokuGrid
+  Array.from(sudokuInput).forEach(input => input.addEventListener('input', setTextArea));
   
 });
 
