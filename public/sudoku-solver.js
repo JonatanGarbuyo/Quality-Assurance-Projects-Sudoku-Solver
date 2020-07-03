@@ -20,8 +20,12 @@ const fillGrid = values => {
 
 const fillAreaText = e => {
   let areaTextArray = textArea.value
-  console.log(e);
+  
+  //console.log(e);
   e.data.match(/\d/)? "" : "";
+  
+  let index = Array.from(sudokuInput).findIndex((item) => item.id == e.target.id);
+  console.log("index: " + index);
 };
 
 
