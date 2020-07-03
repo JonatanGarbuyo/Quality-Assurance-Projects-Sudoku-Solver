@@ -13,6 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 */
 try {
   module.exports = {
-
+  
   }
 } catch (e) {}
