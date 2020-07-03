@@ -19,15 +19,15 @@ const fillGrid = (values) => {
 
 document.addEventListener('DOMContentLoaded', (event) => {
   // Load a simple puzzle into the text area
-  textArea.value = 'a..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..';
+  textArea.value = '..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..';
   //console.log(textArea.value);////////////////////////
   fillGrid(textArea.value); 
   
 });
 
-// listen for changes in the textArea
-textArea.addEventListener("input", )
-/* 
+  // listen for changes in the textArea
+  textArea.addEventListener("input", fillGrid(this.value));
+  /* 
   Export your functions for testing in Node.
   Note: The `try` block is to prevent errors on
   the client side
