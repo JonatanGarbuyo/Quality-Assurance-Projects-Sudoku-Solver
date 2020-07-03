@@ -15,7 +15,23 @@ const fillGrid = (values) => {
 
 // listen for changes in the textArea
 
-
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/bar/foo.txt", true);
+xhr.onload = function (e) {
+  if (xhr.readyState === 4) {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+    } else {
+      console.error(xhr.statusText);
+    }
+  }
+  console.log("textArea.value");////////////////////////
+  
+};
+xhr.onerror = function (e) {
+  console.error(xhr.statusText);
+};
+xhr.send(null); 
 
 document.addEventListener('DOMContentLoaded', () => {
   // Load a simple puzzle into the text area
