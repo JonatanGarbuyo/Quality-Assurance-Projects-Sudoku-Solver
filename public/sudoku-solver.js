@@ -1,19 +1,17 @@
-const gridInput = document.getElementsByClassName('sudoku-input');
+
 const textArea = document.getElementById('text-input');
 // import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const fillGrid = (values) => {
-  let valuesArray = values.split("");
-  //console.log(valuesArray);/////////////////////
+  const gridInput = document.getElementsByClassName('sudoku-input');
+  let valuesArray = values.split(""); // values is a String
+  console.log("valuesArray: ");/////////////////////
+  console.log(valuesArray);/////////////////////
   for(let i = 0; i < gridInput.length; i++){
-    	 gridInput[i].value = valuesArray[i].match(/\d/)?  valuesArray[i] : "";
+    	 gridInput[i].value = valuesArray[i].match(/\d/) && gridInput.length <= 81?  valuesArray[i] : "";
   }
 };
 
-
-
-
-// listen for changes in the textArea
 
 
 
@@ -25,7 +23,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   
 });
 
-
+// listen for changes in the textArea
+textArea.addEventListener("input", )
 /* 
   Export your functions for testing in Node.
   Note: The `try` block is to prevent errors on
