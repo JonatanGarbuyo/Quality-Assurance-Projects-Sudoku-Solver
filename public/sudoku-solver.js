@@ -8,24 +8,22 @@ const fillGrid = values => {
   let valuesArray = values.split(""); // values is a String
   console.log("valuesArray: "); /////////////////////
   console.log(valuesArray); /////////////////////
-  
   Array.from(sudokuInput).forEach((cell, i) => {
-    if(valuesArray[i].match(/\d|\./)){ 
-      cell.value = valuesArray[i].match(/\d/)? valuesArray[i] : "";
-    } else { 
-      return;
-    }
+    if(valuesArray[i].match(/[1-9]|\./)){ 
+      cell.value = valuesArray[i].match(/[1-9]/)? valuesArray[i] : "";
+    } else { return; }
   });
 };
 
 const fillAreaText = e => {
-  let areaTextArray = textArea.value
-  
   //console.log(e);
-  e.data.match(/\d/)? "" : "";
-  
-  let index = Array.from(sudokuInput).findIndex((item) => item.id == e.target.id);
-  console.log("index: " + index);
+  if(e.target.value.match(/[1-9]/)){
+    let areaTextArray = textArea.value.split("");
+    let index = Array.from(sudokuInput).findIndex((item) => item.id == e.target.id);
+    console.log("index: " + index);
+    areaTextArray.splice(index, 1, e.target.value);
+    textArea.value = areaTextArray.join("");
+  } 
 };
 
 
