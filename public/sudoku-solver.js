@@ -16,8 +16,20 @@ const fillGrid = values => {
       return;
     }
   });
-  
 };
+
+const fillAreaText = e => {
+  let areaTextArray = textArea.value
+  console.log(e);
+  e.data.match(/\d/)? "" : "";
+};
+
+
+
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", event => {
   // Load a simple puzzle into the text area
@@ -33,10 +45,9 @@ document.addEventListener("DOMContentLoaded", event => {
     fillGrid(e.target.value) : null;
   });
   // listen for inputs in sudokuGrid
-  Array.from(sudokuInput).forEach(input => input.addEventListener('input', (e) =>{
-    e.data.match(/\d|\./)?
-     "" : null
-  }));
+  Array.from(sudokuInput).forEach(input => input.addEventListener('input', fillAreaText));
+  
+  
   
 });
 
