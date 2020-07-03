@@ -7,10 +7,14 @@ const fillGrid = values => {
   console.log("valuesArray: "); /////////////////////
   console.log(valuesArray); /////////////////////
   for (let i = 0; i < gridInput.length; i++) {
-    valuesArray[i].match(/\d|\./)? 
-      valuesArray[i].match(/\d/)? gridInput[i].value = valuesArray[i] : ""
-      : i--;
+    if(valuesArray[i].match(/\d|\./)){ 
+      gridInput[i].value = valuesArray[i].match(/\d/)? valuesArray[i] : ""
+    } else { 
+      i--;
+      continue;
+    }
   }
+  
 };
 
 document.addEventListener("DOMContentLoaded", event => {
@@ -22,7 +26,7 @@ document.addEventListener("DOMContentLoaded", event => {
   
   
   // listen for changes in the textArea
-  textArea.addEventListener('input', (e)=> console.log(e.data));
+  textArea.addEventListener('input', (e) => fillGrid(e.target.value));
   
 });
 
