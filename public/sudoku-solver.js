@@ -9,13 +9,13 @@ const fillGrid = values => {
   console.log("valuesArray: "); /////////////////////
   console.log(valuesArray); /////////////////////
   
-  for (let i = 0; i < sudokuInput.length; i++) {
+  Array.from(sudokuInput).forEach((cell, i) => {
     if(valuesArray[i].match(/\d|\./)){ 
-      sudokuInput[i].value = valuesArray[i].match(/\d/)? valuesArray[i] : "";
+      cell.value = valuesArray[i].match(/\d/)? valuesArray[i] : "";
     } else { 
-      continue;
+      return;
     }
-  }
+  });
   
 };
 
@@ -28,9 +28,15 @@ document.addEventListener("DOMContentLoaded", event => {
   
   
   // listen for changes in the textArea
-  textArea.addEventListener('input', (e) => fillGrid(e.target.value));
+  textArea.addEventListener('input', (e) => {
+    e.data.match(/\d|\./)?
+    fillGrid(e.target.value) : null;
+  });
   // listen for inputs in sudokuGrid
-  Array.from(sudokuInput).forEach(input => input.addEventListener('input', setTextArea));
+  Array.from(sudokuInput).forEach(input => input.addEventListener('input', (e) =>{
+    e.data.match(/\d|\./)?
+     "" : null
+  }));
   
 });
 
