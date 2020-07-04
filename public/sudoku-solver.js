@@ -20,7 +20,7 @@ const fillAreaText = e => {
   if(e.target.value.match(/[1-9]/)){
     let areaTextArray = textArea.value.split("");
     let index = Array.from(sudokuInput).findIndex((item) => item.id == e.target.id);
-    console.log("index: " + index);
+    console.log("index: " + index);/////////////////
     areaTextArray.splice(index, 1, e.target.value);
     textArea.value = areaTextArray.join("");
   } 
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", event => {
   
   // listen for changes in the textArea
   textArea.addEventListener('input', (e) => {
-    e.data.match(/\d|\./)?
+    e.target.value.match(/\d|\./)?
     fillGrid(e.target.value) : null;
   });
   // listen for inputs in sudokuGrid
