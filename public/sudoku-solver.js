@@ -6,9 +6,13 @@ const errorMsg = document.getElementById('error-msg');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const validInput = (input) => {
-  console.log(input);//////////////////
+  console.log("validInput? " + input);//////////////////
+  console.log(input.match(/[1-9\.]/));/////////////////
   // only numbers 1-9 an "." are valid inpurts
-  return input.match(/[1-9\.]/);
+  if (input.match(/[1-9\.]/) ){
+      return true;
+  }
+  return false;
   
 }
 

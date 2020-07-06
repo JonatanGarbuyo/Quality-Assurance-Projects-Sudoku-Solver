@@ -31,8 +31,7 @@ suite('UnitTests', () => {
     test('Valid "1-9" characters', (done) => {
       const inputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
       inputs.forEach((input) => {
-        console.log(input);
-        assert.strictEqual(Solver.validInput(input), true);
+        assert.isTrue(Solver.validInput(input), );
       });
       done();
     });
@@ -40,9 +39,9 @@ suite('UnitTests', () => {
     // Invalid characters or numbers are not accepted 
     // as valid input for the puzzle grid
     test('Invalid characters (anything other than "1-9") are not accepted', (done) => {
-      const inputs = ['!', 'a', '/', '+', '-', '0', '10', 0, '.'];
+      const inputs = ['!', 'a', '/', '+', '-', '0', '10', 0];
       inputs.forEach((input, i) => {
-        assert.strictEqual(Solver.validInput(input), false);
+        assert.isNotTrue(Solver.validInput(input), );
       });
       done(); 
     });
