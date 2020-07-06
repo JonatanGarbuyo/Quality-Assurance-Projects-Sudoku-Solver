@@ -26,7 +26,8 @@ suite('Functional Tests', () => {
       const textArea = document.getElementById('text-input');
       textArea.value = '473891265851726394926345817568913472342687951197254638734162589685479123219538746';
       Solver.fillGrid(textArea.value);
-      const gridArray = Array.from(document.querySelectorAll('.sudoku-input')).map(cell => cell.value).filter(str => str);
+      const sudokuInput = document.querySelectorAll('.sudoku-input');
+      const gridArray = Array.from(sudokuInput).map(cell => cell.value).filter(str => str);
       const textAreaArray = textArea.value.split("");
       assert.deepStrictEqual(gridArray, textAreaArray);
       done();
@@ -35,7 +36,18 @@ suite('Functional Tests', () => {
     // Entering a valid number in the grid automatically updates
     // the puzzle string in the text area
     test('Valid number in grid updates the puzzle string in the text area', done => {
+      const gridCells = Array.from(document.querySelectorAll('.sudoku-input')).map(cell => cell);
+      const textArea = document.getElementById('text-input');
+      gridCells[0].value = '5';
+      gridCells[1].value = '4';
+      gridCells[2].value = '3';
+      const expected = '543';
 
+      // Run function now that grid cells have changed
+      Solver.setTextArea();
+
+      assert.strictEqual(textArea.value, expected);
+      done();
       // done();
     });
   });
