@@ -14,12 +14,19 @@ const solvePuzzle = () => {
     return;
   }
   //test every solution against text area string
+  for (let i = 0; i < puzzlesAndSolutions.length; i++) {
   puzzlesAndSolutions.map((solution) => {
-    console.log("solution: " + solution[1]);////////////////7
-    let correctSolution = Array.from(textArea).every((char, i) => {
-      console.log(char);
-      return 
+    
+    console.log("test: " + solution[1]);////////////////7
+    let correctSolution = Array.from(textArea.value).every((char, i) => {
+      if (char.match(/[^1-9\.]/)) { return false;}
+      if (char === ".") { return true;}
+      return char === solution[1][i];
     });
+    if (correctSolution) { 
+      console.log(solution[1]);
+      return fillGrid(solution[1]);
+    }
     
   });
 }
