@@ -76,26 +76,27 @@ suite('UnitTests', () => {
   suite('Function solvePuzzle()', () => {
     // Valid complete puzzles pass
     test('Valid puzzles pass', done => {
-      const input = '769235418851496372432178956174569283395842761628713549283657194516924837947381625';
+      const input = '218396745753284196496157832531672984649831257827549613962415378185763429374928561';
       assert.equal(Solver.solvePuzzle(input), true);
       done();
     });
 
     // Invalid complete puzzles fail
     test('Invalid puzzles fail', done => {
-      const input = '779235418851496372432178956174569283395842761628713549283657194516924837947381625';
-      Solver.solvePuzzle(input);
-      
-      //done();
+      const input = '218396745753284196496157832531672984649831257827549613962415378185763429374928569';
+      assert.equal(Solver.solvePuzzle(input), false);
+      done();
     });
   });
   
   
-  suite('Function ____()', () => {
+  suite('Function solvePuzzle()', () => {
     // Returns the expected solution for a valid, incomplete puzzle
     test('Returns the expected solution for an incomplete puzzle', done => {
-      const input = '..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..';
-      
+      const input = '.7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6';
+      const sudokuInput = document.getElementsByClassName("sudoku-input");
+      Solver.solvePuzzle(input);
+      //assert.equal(errorDiv.innerText, errorMsg);
       //done();
     });
   });
