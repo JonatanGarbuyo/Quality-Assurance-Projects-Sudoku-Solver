@@ -17,8 +17,8 @@ const clearInputs = () => {
   })
 }
 
-const solvePuzzle = () => {
-  if (textArea.value.length === 81){
+const solvePuzzle = (str) => {
+  if (str.length === 81){
     errorMsg.innerText = "";
   } else {
     errorMsg.innerText = "Error: Expected puzzle to be 81 characters long.";
@@ -27,7 +27,7 @@ const solvePuzzle = () => {
   //test every solution against text area string
   for (let i = 0; i < puzzlesAndSolutions.length; i++) {
     let solution = puzzlesAndSolutions[i][1];
-    let correctSolution = Array.from(textArea.value).every((char, j) => {
+    let correctSolution = Array.from(str).every((char, j) => {
       if (!validInput(char)) { return false;}
       if (char === ".") { return true;}
       return char === solution[j];
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", event => {
   // listen for inputs in sudokuGrid
   Array.from(sudokuInput).forEach(input => input.addEventListener('input', fillAreaText));
   // on click solve the puzzle 
-  solveButton.addEventListener('click', solvePuzzle);
+  solveButton.addEventListener('click', () => solvePuzzle(document.getElementById("text-input").value));
   // clear the inputs 
   clearButton.addEventListener('click', clearInputs);
 });
