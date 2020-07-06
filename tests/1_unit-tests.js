@@ -101,9 +101,6 @@ suite('UnitTests', () => {
       
       const sudokuInput = document.getElementsByClassName("sudoku-input");
       Array.from(sudokuInput).forEach((cell, i)=>{
-        console.log("cell.value: " + cell.value);//////////////////////77
-        console.log("solution[" + i + "]: " + solution[i]);///////////////////
-        
          assert.equal(cell.value, solution[i]);
       });
       done();

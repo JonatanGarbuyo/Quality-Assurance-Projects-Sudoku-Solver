@@ -7,6 +7,9 @@ import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const validInput = (input) => {
   // only numbers 1-9 an "." are valid inpurts
+  if (!input){
+    return false;
+  }
   if (input.toString().match(/[1-9\.]/) && input.length === 1){
       return true;
   }
@@ -51,9 +54,9 @@ const fillGrid = values => {
   console.log("valuesArray: "); /////////////////////
   console.log(valuesArray); /////////////////////
   Array.from(sudokuInput).forEach((cell, i) => {
-    if(validInput(valuesArray[i])){ 
-      cell.value = valuesArray[i] === "."? "" : valuesArray[i];
-    } else { return; }
+    //if(validInput(valuesArray[i])){ 
+      cell.value = valuesArray[i] === "."? "" : valuesArray[i] || "";
+    //} else { return; }
   });
 };
 
@@ -79,7 +82,8 @@ document.addEventListener("DOMContentLoaded", event => {
   
   // listen for changes in the textArea
   textArea.addEventListener('input', (e) => {
-    console.log(e);/////////////////////
+    console.log("textares input: ");/////////////////////
+    console.log(e.target.value);/////////////////////
     validInput(e.target.value)? fillGrid(e.target.value) : null ;
   });
   // listen for inputs in sudokuGrid
