@@ -8,14 +8,14 @@ import { puzzlesAndSolutions } from './puzzle-strings.js';
 const validInput = (input) => {
   // only numbers 1-9 an "." are valid inpurts
   if (!input){
-    console.log("input valid? false")
+    //console.log("input valid? false")
     return false;
   }
   if (input.toString().match(/[^1-9\.]/)){
-    console.log("input valid? false")
+    //console.log("input valid? false")
     return false;
   }
-  console.log("input valid? true")
+  //console.log("input valid? true")
   return true;
 }
 
@@ -42,7 +42,7 @@ const solvePuzzle = (str) => {
       return char === solution[j];
     });
     if (correctSolution) { 
-      console.log(solution);/////////////////
+      //console.log(solution);/////////////////
       textArea.value = solution;
       fillGrid(solution);
       return true;
@@ -54,8 +54,8 @@ const solvePuzzle = (str) => {
 
 const fillGrid = values => {
   let valuesArray = values.split(""); // values is a String
-  console.log("valuesArray: "); /////////////////////
-  console.log(valuesArray); /////////////////////
+  //console.log("valuesArray: "); /////////////////////
+  //console.log(valuesArray); /////////////////////
   Array.from(sudokuInput).forEach((cell, i) => {
     //if(validInput(valuesArray[i])){ 
       cell.value = valuesArray[i] === "."? "" : valuesArray[i] || "";
@@ -65,11 +65,11 @@ const fillGrid = values => {
 
 
 const fillAreaText = e => {
-  console.log(e);/////////////////////
+  //console.log(e);/////////////////////
   if(validInput(e.target.value)){
     let areaTextArray = textArea.value.split("");
     let index = Array.from(sudokuInput).findIndex((item) => item.id == e.target.id);
-    console.log("index: " + index);/////////////////
+    //console.log("index: " + index);/////////////////
     areaTextArray.splice(index, 1, !e.target.value? "." : e.target.value);
     textArea.value = areaTextArray.join("");
   } else { return; }
@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", event => {
   
   // listen for changes in the textArea
   textArea.addEventListener('input', (e) => {
-    console.log("textares input: ");/////////////////////
-    console.log(e.target.value);/////////////////////
+    //console.log("textares input: ");/////////////////////
+    //console.log(e.target.value);/////////////////////
     validInput(e.target.value)? fillGrid(e.target.value) : null ;
   });
   // listen for inputs in sudokuGrid
