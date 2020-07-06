@@ -43,8 +43,9 @@ document.addEventListener("DOMContentLoaded", event => {
   
   // listen for changes in the textArea
   textArea.addEventListener('input', (e) => {
-    e.target.value.match(/\d|\./)?
-    fillGrid(e.target.value) : null;
+    console.log(e);
+    e.target.value.match(/[^\d|\.]/)?
+    null: fillGrid(e.target.value) ;
   });
   // listen for inputs in sudokuGrid
   Array.from(sudokuInput).forEach(input => input.addEventListener('input', fillAreaText));
