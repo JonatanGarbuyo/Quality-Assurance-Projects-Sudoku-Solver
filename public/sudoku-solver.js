@@ -2,23 +2,24 @@ const textArea = document.getElementById("text-input");
 const sudokuInput = document.getElementsByClassName("sudoku-input");
 const solveButton = document.getElementById('solve-button');
 const clearButton = document.getElementById('clear-button');
-const errorDiv = document.getElementById('error-msg');
+const errorMsg = document.getElementById('error-msg');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const solvePuzzle = () => {
-  console.log(textArea);////////////////////////
-  if(textArea.length != 81) { }
+  console.log(textArea.value);////////////////////////
+  if (textArea.value.length === 81){
+    errorMsg.innerText = "";
+  } else {
+    errorMsg.innerText = "Error: Expected puzzle to be 81 characters long.";
+    return;
+  }
   //test every solution against text area string
   puzzlesAndSolutions.map((solution) => {
+    console.log("solution: " + solution[1]);////////////////7
     let correctSolution = Array.from(textArea).every((char, i) => {
       console.log(char);
-      if (char.match(/[^1-9\.]/)) { return false;}
-      if (char == ".") { return true;}
-      return char == solution[1][i];
+      return 
     });
-    if (correctSolution) { 
-      fillGrid(solution[1]);
-    }
     
   });
 }
