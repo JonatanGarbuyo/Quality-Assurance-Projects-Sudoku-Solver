@@ -5,6 +5,10 @@ const clearButton = document.getElementById('clear-button');
 const errorMsg = document.getElementById('error-msg');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
+const validInput = (input) => {
+  // onli numbers 1-9 an "." are valid inpurts
+  return input.match(/[^1-9\.]/);
+}
 
 const clearInputs = () => {
   textArea.value = "";
@@ -24,16 +28,18 @@ const solvePuzzle = () => {
   for (let i = 0; i < puzzlesAndSolutions.length; i++) {
     let solution = puzzlesAndSolutions[i][1];
     let correctSolution = Array.from(textArea.value).every((char, j) => {
-      if (char.match(/[^1-9\.]/)) { return false;}
+      if (validInput(char)) { return false;}
       if (char === ".") { return true;}
       return char === solution[j];
     });
     if (correctSolution) { 
       console.log(solution);/////////////////
+      textArea.value = solution;
       fillGrid(solution);
       break;
     }
   };
+  return "fail";
 }
 
 
@@ -94,6 +100,7 @@ try {
     fillAreaText,
     fillGrid,
     solvePuzzle,
-    clearInputs
+    clearInputs,
+    validInput
   };
 } catch (e) {}
