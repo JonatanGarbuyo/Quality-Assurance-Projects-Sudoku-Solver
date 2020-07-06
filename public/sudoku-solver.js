@@ -6,8 +6,10 @@ const errorMsg = document.getElementById('error-msg');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const validInput = (input) => {
+  console.log(input);//////////////////
   // only numbers 1-9 an "." are valid inpurts
-  return input.match(/[1-9\.]/g)? true : false;
+  return input.match(/[1-9\.]/);
+  
 }
 
 const clearInputs = () => {
@@ -15,7 +17,7 @@ const clearInputs = () => {
   Array.from(sudokuInput).forEach((cell, i) => {
     cell.value = "";
   })
-}
+} 
 
 const solvePuzzle = (str) => {
   if (str.length === 81){
