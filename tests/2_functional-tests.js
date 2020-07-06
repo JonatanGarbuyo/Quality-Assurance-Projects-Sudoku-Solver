@@ -26,10 +26,9 @@ suite('Functional Tests', () => {
       const textArea = document.getElementById('text-input');
       textArea.value = '473891265851726394926345817568913472342687951197254638734162589685479123219538746';
       Solver.fillGrid(textArea.value);
-      const cellsArray = Array.from(document.querySelectorAll('.sudoku-input')).map(cell => cell.value).filter(str => str);
-      const textAreaAr = textArea.value.split("");
-
-      assert.deepStrictEqual(cellsArray, expected);
+      const gridArray = Array.from(document.querySelectorAll('.sudoku-input')).map(cell => cell.value).filter(str => str);
+      const textAreaArray = textArea.value.split("");
+      assert.deepStrictEqual(gridArray, textAreaArray);
       done();
     });
 
