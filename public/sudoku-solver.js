@@ -42,7 +42,7 @@ const solvePuzzle = (str) => {
       break;
     }
   };
-  return "fail";
+  return ;
 }
 
 
