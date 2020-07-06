@@ -23,8 +23,14 @@ suite('Functional Tests', () => {
     // Entering a valid number in the text area populates 
     // the correct cell in the sudoku grid with that number
     test('Valid number in text area populates correct cell in grid', done => {
+      const textArea = document.getElementById('text-input');
+      textArea.value = '473891265851726394926345817568913472342687951197254638734162589685479123219538746';
+      Solver.fillGrid(textArea.value);
+      const cellsArray = Array.from(document.querySelectorAll('.sudoku-input')).map(cell => cell.value).filter(str => str);
+      const textAreaAr = textArea.value.split("");
 
-      // done();
+      assert.deepStrictEqual(cellsArray, expected);
+      done();
     });
 
     // Entering a valid number in the grid automatically updates

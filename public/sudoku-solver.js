@@ -8,12 +8,15 @@ import { puzzlesAndSolutions } from './puzzle-strings.js';
 const validInput = (input) => {
   // only numbers 1-9 an "." are valid inpurts
   if (!input){
+    console.log("input valid? false")
     return false;
   }
-  if (input.toString().match(/[1-9\.]/) && input.length === 1){
-      return true;
+  if (input.toString().match(/[^1-9\.]/)){
+    console.log("input valid? false")
+    return false;
   }
-  return false;
+  console.log("input valid? true")
+  return true;
 }
 
 const clearInputs = () => {
