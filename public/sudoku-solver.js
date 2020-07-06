@@ -39,10 +39,10 @@ const solvePuzzle = (str) => {
       console.log(solution);/////////////////
       textArea.value = solution;
       fillGrid(solution);
-      break;
+      return true;
     }
   };
-  return ;
+  return false;
 }
 
 
