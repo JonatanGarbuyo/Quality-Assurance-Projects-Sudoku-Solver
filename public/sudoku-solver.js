@@ -2,7 +2,7 @@ const textArea = document.getElementById("text-input");
 const sudokuInput = document.getElementsByClassName("sudoku-input");
 const solveButton = document.getElementById('solve-button');
 const clearButton = document.getElementById('clear-button');
-// import { puzzlesAndSolutions } from './puzzle-strings.js';
+import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const fillGrid = values => {
   let valuesArray = values.split(""); // values is a String
