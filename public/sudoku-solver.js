@@ -16,14 +16,16 @@ const fillGrid = values => {
 };
 
 const fillAreaText = e => {
-  //console.log(e);
-  if(e.target.value.match(/[1-9]/)){
+  console.log(e);
+  if(e.target.value.match(/[^1-9]/)){
+    return;
+  } else {
+    
     let areaTextArray = textArea.value.split("");
     let index = Array.from(sudokuInput).findIndex((item) => item.id == e.target.id);
     console.log("index: " + index);/////////////////
-    areaTextArray.splice(index, 1, e.target.value);
-    textArea.value = areaTextArray.join("");
-  } 
+    areaTextArray.splice(index, 1, !e.target.value? "." : e.target.value);
+    textArea.value = areaTextArray.join("");}
 };
 
 
