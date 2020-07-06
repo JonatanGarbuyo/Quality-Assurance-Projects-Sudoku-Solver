@@ -96,7 +96,7 @@ suite('UnitTests', () => {
       const input = '.7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6';
       const sudokuInput = document.getElementsByClassName("sudoku-input");
       Solver.solvePuzzle(input);
-      //assert.equal(errorDiv.innerText, errorMsg);
+      assert.deepEqual( sudokuInput
       //done();
     });
   });
