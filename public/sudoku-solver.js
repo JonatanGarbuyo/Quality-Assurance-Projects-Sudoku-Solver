@@ -4,6 +4,15 @@ const solveButton = document.getElementById('solve-button');
 const clearButton = document.getElementById('clear-button');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
+const solvePuzzle = (data) => {
+  console.log(data);////////////////////////
+  puzzlesAndSolutions.map((solutions) => {
+    
+  });
+}
+
+
+
 const fillGrid = values => {
   let valuesArray = values.split(""); // values is a String
   console.log("valuesArray: "); /////////////////////
@@ -52,7 +61,7 @@ document.addEventListener("DOMContentLoaded", event => {
   // listen for inputs in sudokuGrid
   Array.from(sudokuInput).forEach(input => input.addEventListener('input', fillAreaText));
   
-  
+  solveButton.addEventListener('click', solvePuzzle);
   
 });
 
