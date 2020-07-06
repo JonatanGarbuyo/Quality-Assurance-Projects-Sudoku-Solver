@@ -94,10 +94,19 @@ suite('UnitTests', () => {
     // Returns the expected solution for a valid, incomplete puzzle
     test('Returns the expected solution for an incomplete puzzle', done => {
       const input = '.7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6';
-      const sudokuInput = document.getElementsByClassName("sudoku-input");
+      const solution = '473891265851726394926345817568913472342687951197254638734162589685479123219538746';
+      
+      const solutionArray = input.split("");
       Solver.solvePuzzle(input);
-      assert.deepEqual( sudokuInput
-      //done();
+      
+      const sudokuInput = document.getElementsByClassName("sudoku-input");
+      Array.from(sudokuInput).forEach((cell, i)=>{
+        console.log("cell.value: " + cell.value);//////////////////////77
+        console.log("solution[" + i + "]: " + solution[i]);///////////////////
+        
+         assert.equal(cell.value, solution[i]);
+      });
+      done();
     });
   });
 });
