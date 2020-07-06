@@ -7,7 +7,7 @@ import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const validInput = (input) => {
   // only numbers 1-9 an "." are valid inpurts
-  return input.match(/[1-9\.]/g);
+  return input.match(/[1-9\.]/g)? true : false;
 }
 
 const clearInputs = () => {
