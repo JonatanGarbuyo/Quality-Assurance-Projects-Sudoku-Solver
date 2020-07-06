@@ -6,8 +6,8 @@ const errorMsg = document.getElementById('error-msg');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const validInput = (input) => {
-  // onli numbers 1-9 an "." are valid inpurts
-  return input.match(/[^1-9\.]/);
+  // only numbers 1-9 an "." are valid inpurts
+  return input.match(/[1-9\.]/g);
 }
 
 const clearInputs = () => {
@@ -28,7 +28,7 @@ const solvePuzzle = () => {
   for (let i = 0; i < puzzlesAndSolutions.length; i++) {
     let solution = puzzlesAndSolutions[i][1];
     let correctSolution = Array.from(textArea.value).every((char, j) => {
-      if (validInput(char)) { return false;}
+      if (!validInput(char)) { return false;}
       if (char === ".") { return true;}
       return char === solution[j];
     });
@@ -48,24 +48,22 @@ const fillGrid = values => {
   console.log("valuesArray: "); /////////////////////
   console.log(valuesArray); /////////////////////
   Array.from(sudokuInput).forEach((cell, i) => {
-    if(valuesArray[i].match(/[1-9]|\./)){ 
-      cell.value = valuesArray[i].match(/[1-9]/)? valuesArray[i] : "";
+    if(validInput(valuesArray[i])){ 
+      cell.value = valuesArray[i] === "."? "" : valuesArray[i];
     } else { return; }
   });
 };
 
 
 const fillAreaText = e => {
-  console.log(e);
-  if(e.target.value.match(/[^1-9]/)){
-    return;
-  } else {
-    
+  console.log(e);/////////////////////
+  if(validInput(e.target.value)){
     let areaTextArray = textArea.value.split("");
     let index = Array.from(sudokuInput).findIndex((item) => item.id == e.target.id);
     console.log("index: " + index);/////////////////
     areaTextArray.splice(index, 1, !e.target.value? "." : e.target.value);
-    textArea.value = areaTextArray.join("");}
+    textArea.value = areaTextArray.join("");
+  } else { return; }
 };
 
 
@@ -78,9 +76,8 @@ document.addEventListener("DOMContentLoaded", event => {
   
   // listen for changes in the textArea
   textArea.addEventListener('input', (e) => {
-    console.log(e);
-    e.target.value.match(/[^\d|\.]/)?
-    null: fillGrid(e.target.value) ;
+    console.log(e);/////////////////////
+    validInput(e.target.value)? fillGrid(e.target.value) : null ;
   });
   // listen for inputs in sudokuGrid
   Array.from(sudokuInput).forEach(input => input.addEventListener('input', fillAreaText));
