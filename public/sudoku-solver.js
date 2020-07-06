@@ -4,10 +4,17 @@ const solveButton = document.getElementById('solve-button');
 const clearButton = document.getElementById('clear-button');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
-const solvePuzzle = (data) => {
-  console.log(data);////////////////////////
-  puzzlesAndSolutions.map((solutions) => {
-    
+const solvePuzzle = () => {
+  console.log(textArea);////////////////////////
+  puzzlesAndSolutions.map((solution) => {
+    Array.from(textArea).every((char, i) => {
+      
+      if (char.match(/[^1-9\.]/)) { return false;}
+      if (char == ".") { return true;}
+      return char == solution[1][i];
+      
+      
+    });
   });
 }
 
@@ -60,8 +67,9 @@ document.addEventListener("DOMContentLoaded", event => {
   });
   // listen for inputs in sudokuGrid
   Array.from(sudokuInput).forEach(input => input.addEventListener('input', fillAreaText));
-  
+  // on click solve the puzzle 
   solveButton.addEventListener('click', solvePuzzle);
+  //
   
 });
 
