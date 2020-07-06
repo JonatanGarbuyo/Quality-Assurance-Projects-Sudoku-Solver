@@ -5,8 +5,15 @@ const clearButton = document.getElementById('clear-button');
 const errorMsg = document.getElementById('error-msg');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
+
+const clearInputs = () => {
+  textArea.value = "";
+  Array.from(sudokuInput).forEach((cell, i) => {
+    cell.value = "";
+  })
+}
+
 const solvePuzzle = () => {
-  console.log(textArea.value);////////////////////////
   if (textArea.value.length === 81){
     errorMsg.innerText = "";
   } else {
@@ -15,22 +22,19 @@ const solvePuzzle = () => {
   }
   //test every solution against text area string
   for (let i = 0; i < puzzlesAndSolutions.length; i++) {
-  puzzlesAndSolutions.map((solution) => {
-    
-    console.log("test: " + solution[1]);////////////////7
-    let correctSolution = Array.from(textArea.value).every((char, i) => {
+    let solution = puzzlesAndSolutions[i][1];
+    let correctSolution = Array.from(textArea.value).every((char, j) => {
       if (char.match(/[^1-9\.]/)) { return false;}
       if (char === ".") { return true;}
-      return char === solution[1][i];
+      return char === solution[j];
     });
     if (correctSolution) { 
-      console.log(solution[1]);
-      return fillGrid(solution[1]);
+      console.log(solution);/////////////////
+      fillGrid(solution);
+      break;
     }
-    
-  });
+  };
 }
-
 
 
 const fillGrid = values => {
@@ -43,6 +47,7 @@ const fillGrid = values => {
     } else { return; }
   });
 };
+
 
 const fillAreaText = e => {
   console.log(e);
@@ -59,18 +64,11 @@ const fillAreaText = e => {
 
 
 
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", event => {
   // Load a simple puzzle into the text area
   textArea.value =
     "..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..";
-  //console.log(textArea.value);////////////////////////
   fillGrid(textArea.value);
-  
   
   // listen for changes in the textArea
   textArea.addEventListener('input', (e) => {
@@ -82,8 +80,8 @@ document.addEventListener("DOMContentLoaded", event => {
   Array.from(sudokuInput).forEach(input => input.addEventListener('input', fillAreaText));
   // on click solve the puzzle 
   solveButton.addEventListener('click', solvePuzzle);
-  //
-  
+  // clear the inputs 
+  clearButton.addEventListener('click', clearInputs);
 });
 
 /* 
@@ -93,6 +91,9 @@ document.addEventListener("DOMContentLoaded", event => {
 */
 try {
   module.exports = {
-    fillGrid
+    fillAreaText,
+    fillGrid,
+    solvePuzzle,
+    clearInputs
   };
 } catch (e) {}
