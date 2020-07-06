@@ -2,19 +2,24 @@ const textArea = document.getElementById("text-input");
 const sudokuInput = document.getElementsByClassName("sudoku-input");
 const solveButton = document.getElementById('solve-button');
 const clearButton = document.getElementById('clear-button');
+const errorDiv = document.getElementById('error-msg');
 import { puzzlesAndSolutions } from './puzzle-strings.js';
 
 const solvePuzzle = () => {
   console.log(textArea);////////////////////////
+  if(textArea.length != 81) { }
+  //test every solution against text area string
   puzzlesAndSolutions.map((solution) => {
-    Array.from(textArea).every((char, i) => {
-      
+    let correctSolution = Array.from(textArea).every((char, i) => {
+      console.log(char);
       if (char.match(/[^1-9\.]/)) { return false;}
       if (char == ".") { return true;}
       return char == solution[1][i];
-      
-      
     });
+    if (correctSolution) { 
+      fillGrid(solution[1]);
+    }
+    
   });
 }
 
