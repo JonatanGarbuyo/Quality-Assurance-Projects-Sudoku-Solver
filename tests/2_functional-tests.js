@@ -36,15 +36,9 @@ suite('Functional Tests', () => {
     // the puzzle string in the text area
     test('Valid number in grid updates the puzzle string in the text area', done => {
       const values = '473891265851726394926345817568913472342687951197254638734162589685479123219538746';
-      
       const sudokuInput = document.getElementsByClassName("sudoku-input");
       const gridArray = Array.from(sudokuInput).map((cell, i) => cell.value = values[i]); 
-      
-      
-      const textArea = document.getElementById('text-input');
-      
-      const textAreaArray = textArea.value.split("");
-      
+      const textAreaArray = document.getElementById('text-input').value.split("");
       assert.deepStrictEqual(gridArray, textAreaArray);
       done();
     });
@@ -54,12 +48,10 @@ suite('Functional Tests', () => {
     // Pressing the "Clear" button clears the sudoku 
     // grid and the text area
     test('Function clearInput()', done => {
-      const textArea = document.getElementById('text-input');
       Solver.clearInputs();
+      const textArea = document.getElementById('text-input');
       const sudokuInput = document.getElementsByClassName("sudoku-input");
-      const gridArray = Array.from(sudokuInput.value)
-      console.log(gridArray);
-      //.filter(cell => cell.value);
+      const gridArray = Array.from(sudokuInput).filter(cell => cell.value);
       assert.equal(textArea.value, '');
       assert.deepStrictEqual(gridArray, []);
       done();
@@ -68,8 +60,14 @@ suite('Functional Tests', () => {
     // Pressing the "Solve" button solves the puzzle and
     // fills in the grid with the solution
     test('Function showSolution(solve(input))', done => {
-
-      // done();
+      const textArea = document.getElementById('text-input');
+      textArea.value = '473891265851726394926345817568913472342687951197254638734162589685479123219538746';
+      Solver.solvePuzzle(textArea.value);
+      
+      const sudokuInput = document.getElementsByClassName("sudoku-input");
+      const gridArray = Array.from(sudokuInput).map((cell, i) => cell.value);
+      assert.deepStrictEqual(gridArray, textArea.value.split(""));
+      done();
     });
   });
 });
